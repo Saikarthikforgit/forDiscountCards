@@ -152,5 +152,6 @@ btn2.onclick = function() {
 
     body.appendChild(div12);
     homeBtn.onclick = home;
+    //jhgfd
 
 };
