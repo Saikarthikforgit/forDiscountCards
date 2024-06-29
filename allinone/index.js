@@ -76,22 +76,30 @@ btn1.onclick = function() {
     div11.appendChild(h11);
     div11.appendChild(form);
     div11.classList.add("bg_img");
-
+    
+    
     body.appendChild(div11);
     homeBtn.onclick = home;
 
-    let newItem = {
+    function setDetails() {
+        event.preventDefault();
+        let newItem = {
         "productName": productNameInput.value,
         "brandName": brandNameInput.value,
         "actualPrice": actualPriceInput.value,
         "discountPrice": discountPriceInput.value,
         "emailId": emailIdInput.value
-    }
-
-    let setDetails = function() {
-        localStorage.setItem("Item", JSON.stringify(newItem));
-        productNameInput.value = "";
     };
+        localStorage.setItem("Item", JSON.stringify(newItem));
+        let r=localStorage.getItem("Item");
+        
+        productNameInput.value = "";
+        brandNameInput.value = ""; 
+        actualPriceInput.value = ""; 
+        discountPriceInput.value = ""; 
+        emailIdInput.value = "";
+        
+    }
 
     uploadBtn.onclick = setDetails;
 };
@@ -108,25 +116,39 @@ btn2.onclick = function() {
     let input = document.createElement("input");
     input.placeholder = "Type the productName Here";
 
-    let result = document.createElement("h1");
+    let result = document.createElement("div");
     result.classList.add("bg_img2");
 
     let div12 = document.createElement("div");
 
-    div12.appendChild(homeBtn);
+    
     div12.appendChild(h12);
     div12.appendChild(input);
     div12.appendChild(SearchBtn);
     div12.appendChild(result);
+    div12.appendChild(homeBtn);
 
     div12.classList.add("bg_img2");
 
     SearchBtn.onclick = function() {
-        let item = localStorage.getItem("item");
-        result.textContent = item.brandName;
+        let item = localStorage.getItem("Item");
+        let data = JSON.parse(item);
+        let resultHeading = document.createElement("h1");
+        resultHeading.textContent = "Congratulations there is a match"
+        
+        let resultMessage = document.createElement("p");
+        if(data.productName!==input.value){
+            resultHeading.textContent = "Sorry there is no match make sure you type all small letters and try again, But even though you get negative results means there is no discount cards available for your required product."
+        }else{
+            
+            resultMessage.textContent = "If you are looking for "+data.productName+" of "+data.brandName+" brand"+", whose actual price is "+data.actualPrice+", but the price after discount is "+data.discountPrice+". If you want to know more datails about how to get discount card details, get in touch with owner of this offer at : "+data.emailId;
+        }
+        result.appendChild(resultHeading);
+        result.appendChild(resultMessage);
+        
 
         input.value = "";
-    }
+    };
 
     body.appendChild(div12);
     homeBtn.onclick = home;
