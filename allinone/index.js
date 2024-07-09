@@ -117,7 +117,7 @@ btn2.onclick = function() {
     input.placeholder = "Type the productName Here";
 
     let result = document.createElement("div");
-    result.classList.add("bg_img2");
+    result.classList.add("forResults");
 
     let div12 = document.createElement("div");
 

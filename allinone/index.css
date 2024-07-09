@@ -28,6 +28,20 @@
 
 }
 
+.forResult{
+    background-color: #000000;
+    height: 40vh;
+    background-size: cover;
+    color: white;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 3px;
+    border-color: #ffffff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
 .indcon {
     background-color: #000000;
     color: white;
