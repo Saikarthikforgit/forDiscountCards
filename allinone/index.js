@@ -95,7 +95,7 @@ btn1.onclick = function() {
         
         productNameInput.value = "";
         brandNameInput.value = ""; 
-        actualPriceInput.value = ""; 
+        actualPriceInput.value = "";
         discountPriceInput.value = ""; 
         emailIdInput.value = "";
         
@@ -130,28 +130,31 @@ btn2.onclick = function() {
 
     div12.classList.add("bg_img2");
 
-    SearchBtn.onclick = function() {
-        let item = localStorage.getItem("Item");
-        let data = JSON.parse(item);
-        let resultHeading = document.createElement("h1");
-        resultHeading.textContent = "Congratulations there is a match"
-        
-        let resultMessage = document.createElement("p");
-        if(data.productName!==input.value){
-            resultHeading.textContent = "Sorry there is no match make sure you type all small letters and try again, But even though you get negative results means there is no discount cards available for your required product."
-        }else{
+SearchBtn.onclick = function() {
+        function resultcon(resultData) {
+            let resultHeading = document.createElement("h1");
+            let resultMessage = document.createElement("p");
             
-            resultMessage.textContent = "If you are looking for "+data.productName+" of "+data.brandName+" brand"+", whose actual price is "+data.actualPrice+", but the price after discount is "+data.discountPrice+". If you want to know more datails about how to get discount card details, get in touch with owner of this offer at : "+data.emailId;
-        }
-        result.appendChild(resultHeading);
-        result.appendChild(resultMessage);
-        
+            resultHeading.textContent="";
+            resultMessage.textContent="";
 
-        input.value = "";
+            if (!resultData || resultData.productName !== input.value) {
+                resultHeading.textContent = "Sorry, there is no match. Make sure you type all small letters and try again. If you get negative results, there is no discount card available for your required product.";
+            } else {
+                resultHeading.textContent = "Congratulations, there is a match!";
+                resultMessage.textContent = `If you are looking for ${resultData.productName} of ${resultData.brandName} brand, whose actual price is ${resultData.actualPrice}, but the price after discount is ${resultData.discountPrice}. If you want to know more details about how to get discount card details, get in touch with the owner of this offer at: ${resultData.emailId}.`;
+            }
+            result.appendChild(resultHeading);
+            result.appendChild(resultMessage);
+            input.value = "";
+        }
+
+        let storedItem = localStorage.getItem("Item");
+        let resultData = storedItem ? JSON.parse(storedItem) : null;
+        result.innerHTML = ""; 
+        resultcon(resultData);
     };
 
     body.appendChild(div12);
     homeBtn.onclick = home;
-    //jhgfd
-
 };
