@@ -117,7 +117,10 @@ btn2.onclick = function() {
     input.placeholder = "Type the productName Here";
 
     let result = document.createElement("div");
-    result.classList.add("forResults");
+    result.classList.add("forResult");
+    let h = document.createElement("h1");
+    h.textContent = "Your Search results will display here:";
+    result.appendChild(h);
 
     let div12 = document.createElement("div");
 
@@ -134,8 +137,8 @@ SearchBtn.onclick = function() {
         function resultcon(resultData) {
             let resultHeading = document.createElement("h1");
             let resultMessage = document.createElement("p");
-            let newline = document.createElement("br");
             
+            h.textContent="";
             resultHeading.textContent="";
             resultMessage.textContent="";
 
