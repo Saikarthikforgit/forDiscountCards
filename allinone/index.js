@@ -142,7 +142,7 @@ SearchBtn.onclick = function() {
                 resultHeading.textContent = "Sorry, there is no match. Make sure you type all small letters and try again. If you get negative results, there is no discount card available for your required product.";
             } else {
                 resultHeading.textContent = "Congratulations, there is a match!";
-                resultMessage.textContent = `If you are looking for ${resultData.productName} of ${resultData.brandName} brand, whose actual price is ${resultData.actualPrice}, but the price after discount is ${resultData.discountPrice}. If you want to know more details about how to get discount card details, get in touch with the owner of this offer at: ${resultData.emailId}.`;
+                resultMessage.textContent = `If you are looking for ${resultData.productName} of ${resultData.brandName} brand. /n The actual price is ${resultData.actualPrice}./n The price after discount is ${resultData.discountPrice}. /n If you want to know more details about how to get discount card details, get in touch with the owner of this offer at: ${resultData.emailId}.`;
             }
             result.appendChild(resultHeading);
             result.appendChild(resultMessage);
